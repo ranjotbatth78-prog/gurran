@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Management System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loginPage" class="login-container">
+  <div class="login-box">
+    <h1>🎓 Attendance System</h1>
+    <p>Admin Login</p>
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="error"></p>
+    <small>Demo: admin / 12345</small>
+  </div>
+</div>
+
+<div id="mainPage" class="hidden">
+  <header>
+    <h2>🎓 Attendance Management System</h2>
+    <button onclick="logout()">Logout</button>
+  </header>
+
+  <div class="container">
+    <aside>
+      <button onclick="showPage('dashboard')">Dashboard</button>
+      <button onclick="showPage('addStudent')">Add Student</button>
+      <button onclick="showPage('students')">Student List</button>
+      <button onclick="showPage('markAttendance')">Mark Attendance</button>
+      <button onclick="showPage('report')">Attendance Report</button>
+    </aside>
+
+    <main>
+      <section id="dashboard" class="page">
+        <h1>Dashboard</h1>
+        <div class="cards">
+          <div class="card">
+            <h3>Total Students</h3>
+            <h2 id="totalStudents">0</h2>
+          </div>
+          <div class="card">
+            <h3>Present Today</h3>
+            <h2 id="presentToday">0</h2>
+          </div>
+          <div class="card">
+            <h3>Absent Today</h3>
+            <h2 id="absentToday">0</h2>
+          </div>
+        </div>
+      </section>
+
+      <section id="addStudent" class="page hidden">
+        <h1>Add Student</h1>
+        <form id="studentForm">
+          <input id="name" placeholder="Student Name" required>
+          <input id="roll" placeholder="Roll Number" required>
+          <input id="course" placeholder="Course" required>
+          <button type="submit">Add Student</button>
+        </form>
+      </section>
+
+      <section id="students" class="page hidden">
+        <h1>Student List</h1>
+        <input id="search" placeholder="Search student..." oninput="renderAll()">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Name</th><th>Roll No</th><th>Course</th><th>Action</th></tr>
+            </thead>
+            <tbody id="studentTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="markAttendance" class="page hidden">
+        <h1>Mark Attendance</h1>
+        <label>Select Date</label>
+        <input type="date" id="attendanceDate">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Name</th><th>Roll No</th><th>Status</th></tr>
+            </thead>
+            <tbody id="markTable"></tbody>
+          </table>
+        </div>
+        <button onclick="saveAttendance()">Save Attendance</button>
+      </section>
+
+      <section id="report" class="page hidden">
+        <h1>Attendance Report</h1>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th><th>Roll No</th>
+                <th>Present</th><th>Absent</th><th>Percentage</th>
+              </tr>
+            </thead>
+            <tbody id="reportTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
